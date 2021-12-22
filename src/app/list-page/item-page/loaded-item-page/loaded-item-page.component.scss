@@ -1,0 +1,141 @@
+.chips {
+  width: 20px;
+  height: 20px;
+
+  border-radius: 10px;
+  margin: 0 0 0 5px;
+
+  color: white;
+
+  background-color: grey;
+}
+
+.chips.normal {
+  background-color: #bcbcaf;
+}
+
+.chips.poison {
+  background-color: #a65c9e;
+}
+
+.chips.psychic {
+  background-color: #f462b1;
+}
+
+.chips.grass {
+  background-color: #8dd156;
+}
+
+.chips.ground {
+  background-color: #e9c55c;
+}
+
+.chips.ice {
+  background-color: #99f2fe
+}
+
+.chips.fire {
+  background-color: #f75047;
+}
+
+.chips.rock {
+  background-color: #cbb974;
+}
+
+.chips.dragon {
+  background-color: #8378fc;
+}
+
+.chips.water {
+  background-color: #56b1fd;
+}
+
+.chips.bug {
+  background-color: #c4d034;
+}
+
+.chips.dark {
+  background-color: #896856;
+}
+
+.chips.fighting {
+  background-color: #a55445;
+}
+
+.chips.ghost {
+  background-color: #6e71c7;
+}
+
+.chips.steel {
+  background-color: #f75047;
+}
+
+.chips.flying {
+  background-color: #74a5fc;
+}
+
+.chips.electric {
+  background-color: #fedd49;
+}
+
+.chips.fairy {
+  background-color: #f6adfd;
+}
+
+mat-expansion-panel {
+  width: 98vw;
+  margin: 5px 0 5px 0;
+
+  label.types {
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: flex-end;
+
+    .chips {
+      width: 60px;
+      text-align: center;
+    }
+  }
+
+  mat-expansion-panel-header {
+    padding: 0 5px 0 5px;
+  }
+
+  mat-panel-description {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  mat-panel-title {
+    display: flex;
+    justify-content: space-around;
+
+    .img {
+      margin: 4px 0 0 0;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+
+      background-position: center;
+      background-size: 40px;
+    }
+
+    .name {
+      margin: 10px 0 0 0;
+      width: 100px;
+      height: 30px;
+    }
+  }
+}
+
+label {
+  input {
+    display: none;
+  }
+}
+
+svg {
+  margin: -4px 10px 0 10px;
+  fill: gold;
+}

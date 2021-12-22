@@ -1,0 +1,40 @@
+div {
+  align-items: center;
+  justify-content: center;
+
+  display: grid;
+}
+
+form {
+
+  display: flex;
+  flex-direction: column;
+
+  .chip-list {
+    width: 100vw;
+  }
+
+  .search-width {
+    width: 100vw;
+  }
+
+}
+
+.example-ripple-container {
+  margin: 10px 0 20px 0;
+  cursor: pointer;
+  text-align: center;
+
+  width: 200px;
+  height: 25px;
+  line-height: 25px;
+
+  border-radius: 2px;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}

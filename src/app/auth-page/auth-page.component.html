@@ -1,0 +1,111 @@
+<div *ngIf="!isRegistration">
+  <div (click)="setIsRegistration(true)" class="example-ripple-container mat-elevation-z4"
+       matRipple
+       [matRippleCentered]="centered"
+       [matRippleDisabled]="disabled"
+       [matRippleUnbounded]="unbounded"
+       [matRippleRadius]="radius"
+       [matRippleColor]="color">
+    to Registration
+  </div>
+  <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" formControlName="login" matInput placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="loginForm.controls['login'].invalid">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="'password'" formControlName="password">
+    </mat-form-field>
+    <div (click)="login()" [hidden]="(loginForm.controls['login'].invalid || loginForm.controls['password'].invalid)" class="example-ripple-container mat-elevation-z4"
+         matRipple
+         [matRippleCentered]="centered"
+         [matRippleDisabled]="disabled"
+         [matRippleUnbounded]="unbounded"
+         [matRippleRadius]="radius"
+         [matRippleColor]="color">
+      Login
+    </div>
+  </form>
+</div>
+<div *ngIf="isRegistration">
+  <div (click)="setIsRegistration(false)" class="example-ripple-container mat-elevation-z4"
+       matRipple
+       [matRippleCentered]="centered"
+       [matRippleDisabled]="disabled"
+       [matRippleUnbounded]="unbounded"
+       [matRippleRadius]="radius"
+       [matRippleColor]="color">
+    to Login
+  </div>
+  <form class="example-form" [formGroup]="registrationForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" formControlName="login" matInput placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="loginForm.controls['login'].invalid">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="'password'" formControlName="password">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Repeat your password</mat-label>
+      <input matInput [type]="'password'" formControlName="repPassword">
+    </mat-form-field>
+    <div (click)="registration()" [hidden]="(registrationForm.controls['login'].invalid || registrationForm.controls['password'].invalid || registrationForm.controls['repPassword'].invalid)" class="example-ripple-container mat-elevation-z4"
+         matRipple
+         [matRippleCentered]="centered"
+         [matRippleDisabled]="disabled"
+         [matRippleUnbounded]="unbounded"
+         [matRippleRadius]="radius"
+         [matRippleColor]="color">
+      Registration
+    </div>
+  </form>
+</div>
+
+
+<!--<div *ngIf="!isRegistration">-->
+<!--  <p>login</p>-->
+<!--  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">-->
+<!--    <p>-->
+<!--      <label for="login-login">Login: </label>-->
+<!--      <input id="login-login" formControlName="login">-->
+<!--    </p>-->
+<!--    <p>-->
+<!--      <label for="login-password">Password: </label>-->
+<!--      <input id="login-password" formControlName="password">-->
+<!--    </p>-->
+<!--    <button type="submit" [disabled]="(loginForm.controls['login'].invalid && loginForm.controls['password'].invalid)">Login</button>-->
+<!--  </form>-->
+<!--  <p>-->
+<!--    <button (click)="setIsRegistration(true)">to Registration</button>-->
+<!--  </p>-->
+<!--</div>-->
+<!--<div *ngIf="isRegistration">-->
+<!--  <p>registration</p>-->
+<!--  <form class="registration-form" [formGroup]="registrationForm" (ngSubmit)="registration()">-->
+<!--    <p>-->
+<!--      <label for="registration-login">Login: </label>-->
+<!--      <input id="registration-login" formControlName="login">-->
+<!--    </p>-->
+<!--    <p>-->
+<!--      <label for="registration-password">Password: </label>-->
+<!--      <input id="registration-password" formControlName="password">-->
+<!--    </p>-->
+<!--    <p>-->
+<!--      <label for="registration-repPassword">Confirm Password: </label>-->
+<!--      <input id="registration-repPassword" formControlName="repPassword">-->
+<!--    </p>-->
+<!--    <button type="submit" [disabled]="(registrationForm.controls['login'].invalid && registrationForm.controls['password'].invalid && registrationForm.controls['repPassword'].invalid)">Registration</button>-->
+<!--  </form>-->
+<!--  <p>-->
+<!--    <button (click)="setIsRegistration(false)">to Login</button>-->
+<!--  </p>-->
+<!--</div>-->
+
