@@ -15,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'pokemons',
+    pathMatch: 'full',
     component: ListPageComponent,
     children: [
       { path: '', component: ItemPageComponent, children: [{ path: '', component: LoadedItemPageComponent }, { path: '', component: SceletonItemPageComponent }] }
@@ -22,18 +23,19 @@ const routes: Routes = [
   },
   {
     path: 'favorites',
+    pathMatch: 'full',
     component: ListPageComponent,
     children: [
       { path: '', component: ItemPageComponent, children: [{ path: '', component: LoadedItemPageComponent }, { path: '', component: SceletonItemPageComponent }] }
     ]
   },
   {
-    path: 'notfound',
-    component: NotfoundPageComponent
-  },
-  {
     path: 'auth',
     component: AuthPageComponent
+  },
+  {
+    path: '**',
+    component: NotfoundPageComponent
   }
 ];
 

@@ -15,7 +15,7 @@ export class ItemPageComponent {
   pokemon: IPokemon;
   isDataLoaded = false;
 
-  ngOnInit () {
+  ngOnInit (): void {
     this.pokemonService.getPokemonByName(this.pokemonName).subscribe((pokemon) => {
       this.pokemon = pokemon;
       this.pokemon.name = this.pokemonName;

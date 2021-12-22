@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './sceleton-item-page.component.html',
   styleUrls: ['./sceleton-item-page.component.scss']
 })
-export class SceletonItemPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class SceletonItemPageComponent {}

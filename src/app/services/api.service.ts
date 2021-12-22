@@ -31,11 +31,11 @@ export class ApiService {
     return this.httpService.get('pokemons/filtred/' + typeString + '/' + name + '?offset=' + offset + '&limit=' + limit);
   }
 
-  getFavoritesPokemonList(offset: number, limit: number) {
+  getFavoritesPokemonList(offset: number, limit: number): Observable<any> {
     return this.httpService.get('favorites?offset=' + offset + '&limit=' + limit);
   }
 
-  changePokemonFavoriteStatus(name: string, isFavorite: boolean) {
+  changePokemonFavoriteStatus(name: string, isFavorite: boolean): Observable<any> {
     return this.httpService.patch('favorites', { name, isFavorite });
   }
 

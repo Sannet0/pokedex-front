@@ -8,10 +8,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthPageModule } from './auth-page/auth-page.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
+import { NotfoundPageComponent } from './notfound-page/notfound-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotfoundPageComponent
   ],
   imports: [
     HttpClientModule,
@@ -19,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     ListPageModule,
     AuthPageModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     {

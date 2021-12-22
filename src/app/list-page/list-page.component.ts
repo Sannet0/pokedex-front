@@ -71,7 +71,7 @@ export class ListPageComponent implements OnInit {
     }
   }
 
-  setPageSizeOptions(event: PageEvent) {
+  setPageSizeOptions(event: PageEvent): void {
     const {pageSize, pageIndex} = event;
 
     this.pageIndex = pageIndex;
@@ -98,7 +98,7 @@ export class ListPageComponent implements OnInit {
     }
   }
 
-  submit() {
+  submit(): void {
     this.searchName = this.search.value.name;
     this.searchTypes = this.types;
 
@@ -155,7 +155,7 @@ export class ListPageComponent implements OnInit {
     return this.allTypes.filter(type => type.toLowerCase().includes(filterValue));
   }
 
-  changePage() {
+  changePage(): void {
     if (this.isUserInFavorites){
       this.router.navigate(['pokemons']).then();
     } else {
@@ -163,13 +163,13 @@ export class ListPageComponent implements OnInit {
     }
   }
 
-  logOut() {
+  logOut(): void {
     localStorage.setItem('token', '');
     localStorage.setItem('refToken', '');
     this.router.navigate(['auth']).then();
   }
 
-  logIn() {
+  logIn(): void {
     this.router.navigate(['auth']).then();
   }
 }

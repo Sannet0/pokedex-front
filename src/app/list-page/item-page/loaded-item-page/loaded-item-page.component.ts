@@ -16,7 +16,7 @@ export class LoadedItemPageComponent {
   isUserInFavorites = this.router.url === '/favorites';
   isHide = false;
 
-  setPokemonFavorite() {
+  setPokemonFavorite(): void {
     this.pokemon.isFavorite = !this.pokemon.isFavorite;
     if (this.isUserInFavorites){
       this.isHide = true;
