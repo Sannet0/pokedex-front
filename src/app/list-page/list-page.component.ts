@@ -54,7 +54,7 @@ export class ListPageComponent implements OnInit {
     name: new FormControl('')
   });
   searchName: string;
-  searchTypes: string[];
+  searchTypes: string[] = [];
 
   ngOnInit() {
     if (this.router.url === '/pokemons') {
@@ -84,6 +84,7 @@ export class ListPageComponent implements OnInit {
         this.pageIndex = 0;
         this.findFiltred(offset, pageSize);
       } else {
+        console.log("LOOOG", offset, pageSize);
         this.pokemonService.getPokemonList(offset, pageSize).subscribe((pokemons) => {
           this.pokemonCount = pokemons.count;
           this.pokemons = pokemons.pokemons;
