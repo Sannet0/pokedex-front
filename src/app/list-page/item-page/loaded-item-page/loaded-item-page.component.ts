@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { IPokemon } from '../../../interface/pokemon-interface';
 import { PokemonService } from '../../../services/pokemon.service';
-import { Router } from '@angular/router';
+import { StorageService } from '../../../services/storage.service';
 
 @Component({
   selector: 'app-loaded-item-page',
@@ -10,17 +12,29 @@ import { Router } from '@angular/router';
 })
 export class LoadedItemPageComponent {
 
-  constructor(private pokemonService: PokemonService, private router: Router) { }
+  constructor(
+    private pokemonService: PokemonService,
+    private router: Router,
+    private storageService: StorageService
+  ) { }
 
   @Input() pokemon: IPokemon;
+  @Output() degreesPokemonCountEvent = new EventEmitter<void>();
+
   isUserInFavorites = this.router.url === '/favorites';
   isHide = false;
+  isUserAuth = !!this.storageService.getAuthData().token;
 
   setPokemonFavorite(): void {
     this.pokemon.isFavorite = !this.pokemon.isFavorite;
-    if (this.isUserInFavorites){
+    if (this.isUserInFavorites) {
       this.isHide = true;
+      this.degreesPokemonCountEvent.emit();
     }
-    this.pokemonService.changePokemonFavoriteStatus(this.pokemon.name, this.pokemon.isFavorite).subscribe();
+    if (this.pokemon.isFavorite) {
+      this.pokemonService.addPokemonToFavorite(this.pokemon.name).subscribe();
+    } else {
+      this.pokemonService.deletePokemonFromFavorite(this.pokemon.name).subscribe();
+    }
   }
 }

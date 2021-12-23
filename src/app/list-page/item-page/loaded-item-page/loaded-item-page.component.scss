@@ -136,6 +136,19 @@ label {
 }
 
 svg {
+  cursor: pointer;
   margin: -4px 10px 0 10px;
   fill: gold;
+}
+
+svg.check:hover {
+  fill: #efc800;
+}
+
+.big-img {
+  width: 150px;
+  height: 150px;
+
+  background-position: center;
+  background-size: 150px;
 }

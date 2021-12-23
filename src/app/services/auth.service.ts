@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core';
+
 import { ApiService } from './api.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private storageService: StorageService) { }
 
   login(login: string, password: string): void {
     this.apiService.login(login, password).subscribe(token => {
-      localStorage.setItem('token', token.jwt);
-      localStorage.setItem('refToken', token.rt);
+      this.storageService.setAuthData(token.jwt, token.rt);
     });
   }
 
   registration(login: string, password: string, repPassword: string): void {
     this.apiService.registration(login, password, repPassword).subscribe(token => {
-      localStorage.setItem('token', token.jwt);
-      localStorage.setItem('refToken', token.rt);
+      this.storageService.setAuthData(token.jwt, token.rt);
     });
   }
 
   authWithRefToken(token: string) {
     this.apiService.authWithRefToken(token).subscribe(token => {
-      localStorage.setItem('token', token.jwt);
-      localStorage.setItem('refToken', token.rt);
+      this.storageService.setAuthData(token.jwt, token.rt);
     });
   }
 

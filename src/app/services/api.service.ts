@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
 import { Observable } from 'rxjs';
+
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,21 +23,29 @@ export class ApiService {
   }
 
   filterPokemonsByType(offset: number, limit: number, types: string[]) {
-    const typeString = types.reduce((type, preType) => type + ',' + preType, '');
+    const typeString = this.typesToString(types);
     return this.httpService.get('pokemons/filtred/' + typeString + '?offset=' + offset + '&limit=' + limit);
   }
 
   filterPokemonsByTypeAndName(offset: number, limit: number, types: string[], name: string): Observable<any> {
-    const typeString = types.reduce((type, preType) => type + ',' + preType, '');
+    const typeString = this.typesToString(types);
     return this.httpService.get('pokemons/filtred/' + typeString + '/' + name + '?offset=' + offset + '&limit=' + limit);
+  }
+
+  typesToString(types: string[]) {
+    return types.reduce((type, preType) => type + ',' + preType, '').replace(',', '');
   }
 
   getFavoritesPokemonList(offset: number, limit: number): Observable<any> {
     return this.httpService.get('favorites?offset=' + offset + '&limit=' + limit);
   }
 
-  changePokemonFavoriteStatus(name: string, isFavorite: boolean): Observable<any> {
-    return this.httpService.patch('favorites', { name, isFavorite });
+  addPokemonToFavorite(name: string) {
+    return this.httpService.post('favorites/' + name);
+  }
+
+  deletePokemonFromFavorite(name: string) {
+    return this.httpService.delete('favorites/' + name);
   }
 
   login(login: string, password: string): Observable<{ jwt: string; rt: string }> {

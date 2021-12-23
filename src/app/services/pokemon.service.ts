@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -33,7 +34,11 @@ export class PokemonService {
     return this.apiService.getFavoritesPokemonList(offset, limit);
   }
 
-  changePokemonFavoriteStatus(name: string, isFavorite: boolean): Observable<any> {
-    return this.apiService.changePokemonFavoriteStatus(name, isFavorite);
+  addPokemonToFavorite(name: string): Observable<any> {
+    return this.apiService.addPokemonToFavorite(name);
+  }
+
+  deletePokemonFromFavorite(name: string): Observable<any> {
+    return this.apiService.deletePokemonFromFavorite(name);
   }
 }

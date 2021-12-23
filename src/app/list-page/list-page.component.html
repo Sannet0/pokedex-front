@@ -1,34 +1,29 @@
 <div *ngIf="isUserAuth" (click)="changePage()" class="example-ripple-container mat-elevation-z4"
      matRipple
-     [matRippleCentered]="centered"
-     [matRippleDisabled]="disabled"
-     [matRippleUnbounded]="unbounded"
-     [matRippleRadius]="radius"
-     [matRippleColor]="color">
+     [matRippleCentered]="false"
+     [matRippleDisabled]="false"
+     [matRippleUnbounded]="false">
   {{ isUserInFavorites ? 'All Pokemons' : 'Favorites' }}
 </div>
 <div *ngIf="isUserAuth" (click)="logOut()" class="example-ripple-container mat-elevation-z4"
      matRipple
-     [matRippleCentered]="centered"
-     [matRippleDisabled]="disabled"
-     [matRippleUnbounded]="unbounded"
-     [matRippleRadius]="radius"
-     [matRippleColor]="color">
+     [matRippleCentered]="false"
+     [matRippleDisabled]="false"
+     [matRippleUnbounded]="false">
   LogOut
 </div>
 <div *ngIf="!isUserAuth" (click)="logIn()" class="example-ripple-container mat-elevation-z4"
      matRipple
-     [matRippleCentered]="centered"
-     [matRippleDisabled]="disabled"
-     [matRippleUnbounded]="unbounded"
-     [matRippleRadius]="radius"
-     [matRippleColor]="color">
+     [matRippleCentered]="false"
+     [matRippleDisabled]="false"
+     [matRippleUnbounded]="false">
   LogIn
 </div>
-<form *ngIf="!isUserInFavorites" class="example-form" [formGroup]="search" (keydown.enter)="submit()">
+<form *ngIf="!isUserInFavorites" class="example-form" [formGroup]="search">
   <mat-form-field class="search-width" appearance="fill">
     <mat-label>Pokemon</mat-label>
-    <input type="text"
+    <input (keyup)="submit()"
+           type="text"
            formControlName="name"
            placeholder="Choose one"
            aria-label="Pokemon"
@@ -47,7 +42,7 @@
       </mat-chip>
       <input
         placeholder="Choose type"
-        #fruitInput
+        #typesInput
         [formControl]="typeCtrl"
         [matAutocomplete]="auto"
         [matChipInputFor]="chipList"
@@ -56,13 +51,13 @@
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedType($event)">
       <mat-option *ngFor="let types of filteredTypes | async" [value]="types">
-        {{types}}
+        {{ types }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedType($event)">
     <mat-option *ngFor="let types of filteredTypes | async" [value]="types">
-      {{types}}
+      {{ types }}
     </mat-option>
   </mat-autocomplete>
 </form>
@@ -72,5 +67,6 @@
                (page)="setPageSizeOptions($event)"
                aria-label="Select page"></mat-paginator>
 <div>
-  <app-item-page *ngFor="let pokemon of pokemons" [pokemonName]="pokemon"></app-item-page>
+  <app-item-page *ngFor="let pokemon of pokemons" [pokemonName]="pokemon" (degreesPokemonCountEvent)="degreesPokemonCount()"></app-item-page>
+  <div *ngIf="!pokemons">Ни одного покемона не найдено :(</div>
 </div>

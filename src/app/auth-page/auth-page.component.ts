@@ -12,6 +12,13 @@ export class AuthPageComponent {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
 
+  centered = false;
+  disabled = false;
+  unbounded = false;
+
+  radius: number;
+  color: string;
+
   isRegistration = false;
 
   loginForm = this.formBuilder.group({
@@ -25,29 +32,33 @@ export class AuthPageComponent {
     repPassword: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
 
-  centered = false;
-  disabled = false;
-  unbounded = false;
-
-  radius: number;
-  color: string;
-
   login(): void {
-    const { login, password } = this.loginForm.value;
-    if ((login.trim() && password.trim())) {
-      if ((!this.loginForm.controls['login'].invalid && !this.loginForm.controls['password'].invalid)) {
+    if (this.loginForm.valid) {
+      const { login, password } = this.loginForm.value;
+      const trimmedForm = {
+        login: login.trim(),
+        password: password.trim()
+      };
+
+      if ((trimmedForm.login && trimmedForm.password) && this.loginForm.valid) {
         this.loginForm.reset();
-        this.authService.login(login.trim(), password.trim());
+        this.authService.login(trimmedForm.login, trimmedForm.password);
       }
     }
   }
 
   registration(): void {
-    const { login, password, repPassword } = this.registrationForm.value;
-    if ((login.trim() && password.trim()) && repPassword.trim() === password.trim()) {
-      if ((!this.registrationForm.controls['login'].invalid && !this.registrationForm.controls['password'].invalid && !this.registrationForm.controls['repPassword'].invalid)) {
+    if (this.registrationForm.valid) {
+      const { login, password, repPassword } = this.registrationForm.value;
+      const trimmedForm = {
+        login: login.trim(),
+        password: password.trim(),
+        repPassword: repPassword.trim()
+      };
+
+      if (((trimmedForm.login && trimmedForm.password) && trimmedForm.repPassword === trimmedForm.password) && this.registrationForm.valid) {
         this.loginForm.reset();
-        this.authService.registration(login.trim(), password.trim(), repPassword.trim());
+        this.authService.registration(trimmedForm.login, trimmedForm.password, trimmedForm.repPassword);
       }
     }
   }
