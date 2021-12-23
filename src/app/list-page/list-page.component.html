@@ -69,5 +69,5 @@
                aria-label="Select page"></mat-paginator>
 <div>
   <app-item-page *ngFor="let pokemon of pokemons" [pokemonName]="pokemon" (degreesPokemonCountEvent)="degreesPokemonCount()"></app-item-page>
-  <div *ngIf="!pokemons">Ни одного покемона не найдено :(</div>
+  <div *ngIf="pokemonCount === 0">Ни одного покемона не найдено :(</div>
 </div>
