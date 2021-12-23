@@ -22,10 +22,4 @@ export class AuthService {
     });
   }
 
-  authWithRefToken(token: string) {
-    this.apiService.authWithRefToken(token).subscribe(token => {
-      this.storageService.setAuthData(token.jwt, token.rt);
-    });
-  }
-
 }

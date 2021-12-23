@@ -172,6 +172,7 @@ export class ListPageComponent implements OnInit {
 
   logOut(): void {
     this.storageService.setAuthData('', '');
+    this.isUserAuth = false;
   }
 
   logIn(): void {
