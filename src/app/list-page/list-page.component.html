@@ -62,6 +62,7 @@
   </mat-autocomplete>
 </form>
 <mat-paginator [length]="pokemonCount"
+               [pageIndex]="pageIndex"
                [pageSize]="pageSize"
                [pageSizeOptions]="pageSizeOptions"
                (page)="setPageSizeOptions($event)"

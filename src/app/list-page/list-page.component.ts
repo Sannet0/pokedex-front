@@ -79,7 +79,6 @@ export class ListPageComponent implements OnInit {
 
     if (this.router.url === '/pokemons') {
       if (this.searchName || this.searchTypes.length) {
-        this.pageIndex = 0;
         this.findWithFilters(offset, pageSize);
       } else {
         this.getPokemonCorrectList(offset, pageSize);
@@ -93,9 +92,10 @@ export class ListPageComponent implements OnInit {
   }
 
   submit(): void {
+    this.pageIndex = 0;
     this.searchName = this.search.value.name;
     this.searchTypes = this.types;
-    this.findWithFilters(0, this.pageSize);
+    this.findWithFilters(this.pageIndex, this.pageSize);
   }
 
 
