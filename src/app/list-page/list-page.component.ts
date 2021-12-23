@@ -47,7 +47,6 @@ export class ListPageComponent implements OnInit {
   typeCtrl = new FormControl();
   filteredTypes: Observable<string[]>;
   types: string[] = [];
-  // todo get from back
   allTypes: string[] = pokemonTypes;
   @ViewChild('typesInput') typesInput: ElementRef<HTMLInputElement>;
 
