@@ -8,7 +8,7 @@ import { StorageService } from '../../../services/storage.service';
 @Component({
   selector: 'app-loaded-item-page',
   templateUrl: './loaded-item-page.component.html',
-  styleUrls: ['./loaded-item-page.component.scss']
+  styleUrls: ['./loaded-item-page.component.scss', '../../chips-colors.css']
 })
 export class LoadedItemPageComponent {
 
