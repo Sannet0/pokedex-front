@@ -1,0 +1,18 @@
+mat-panel-title {
+  display: flex;
+
+  .img {
+    margin: 4px 10vw 0 10vw;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+
+  .name {
+    margin: 5px 0 0 0;
+
+    width: 100px;
+    height: 15px;
+    border-radius: 7px;
+  }
+}

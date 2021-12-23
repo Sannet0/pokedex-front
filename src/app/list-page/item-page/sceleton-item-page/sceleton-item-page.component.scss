@@ -24,25 +24,17 @@ mat-expansion-panel {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    margin: 0 23px 0 0;
   }
 
   mat-panel-title {
-    display: flex;
-    justify-content: space-around;
-
     .img {
-      margin: 4px 0 0 0;
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
+      margin-top: 1px;
     }
 
     .name {
-      margin: 5px 0 0 0;
-
-      width: 100px;
-      height: 15px;
-      border-radius: 7px;
+      margin: 10px 0 0 0;
     }
   }
 
