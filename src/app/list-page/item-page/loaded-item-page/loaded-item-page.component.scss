@@ -22,6 +22,11 @@ mat-expansion-panel {
     .chips {
       width: 60px;
       text-align: center;
+      cursor: pointer;
+    }
+
+    .chips:hover {
+      filter: contrast(120%);
     }
   }
 
@@ -30,9 +35,9 @@ mat-expansion-panel {
   }
 
   mat-panel-description {
-    display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin: 0 7px 0 0;
   }
 
   mat-panel-title {
@@ -50,8 +55,10 @@ mat-expansion-panel {
 
     .name {
       margin: 10px 0 0 0;
-      width: 50px;
+      width: 80px;
       height: 30px;
+      overflow: hidden;
+      text-overflow: ellipsis !important;
     }
   }
 }
@@ -78,4 +85,10 @@ svg.check:hover {
 
   background-position: center;
   background-size: 150px;
+}
+
+.big-name {
+  flex: auto;
+  font-size: x-large;
+  margin: 0 0 0 15px;
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AngularToastifyModule, ToastService } from 'angular-toastify';
 import { AppComponent } from './app.component';
 import { ListPageModule } from './list-page/list-page.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';

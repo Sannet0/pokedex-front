@@ -47,7 +47,7 @@
         [matAutocomplete]="auto"
         [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="addType($event)">
+        (matChipInputTokenEnd)="addType($event.value)">
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedType($event)">
       <mat-option *ngFor="let types of filteredTypes | async" [value]="types">
@@ -68,6 +68,13 @@
                (page)="setPageSizeOptions($event)"
                aria-label="Select page"></mat-paginator>
 <div>
-  <app-item-page *ngFor="let pokemon of pokemons" [pokemonName]="pokemon" (degreesPokemonCountEvent)="degreesPokemonCount()"></app-item-page>
+  <app-item-page *ngFor="let pokemon of pokemons" [pokemonName]="pokemon" (choseTypeEvent)="addType($event)" (degreesPokemonCountEvent)="degreesPokemonCount()"></app-item-page>
   <div *ngIf="pokemonCount === 0">Ни одного покемона не найдено :(</div>
 </div>
+<mat-paginator [length]="pokemonCount"
+               [pageIndex]="pageIndex"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="setPageSizeOptions($event)"
+               aria-label="Select page"></mat-paginator>
+<lib-toastify-toast-container></lib-toastify-toast-container>

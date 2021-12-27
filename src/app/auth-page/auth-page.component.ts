@@ -41,7 +41,6 @@ export class AuthPageComponent {
       };
 
       if ((trimmedForm.login && trimmedForm.password) && this.loginForm.valid) {
-        this.loginForm.reset();
         this.authService.login(trimmedForm.login, trimmedForm.password);
       }
     }
@@ -57,7 +56,6 @@ export class AuthPageComponent {
       };
 
       if (((trimmedForm.login && trimmedForm.password) && trimmedForm.repPassword === trimmedForm.password) && this.registrationForm.valid) {
-        this.loginForm.reset();
         this.authService.registration(trimmedForm.login, trimmedForm.password, trimmedForm.repPassword);
       }
     }

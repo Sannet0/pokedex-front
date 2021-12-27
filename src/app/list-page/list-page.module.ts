@@ -13,6 +13,7 @@ import { ListPageComponent } from './list-page.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ItemPageModule } from './item-page/item-page.module';
 import { MatRippleModule } from '@angular/material/core';
+import { AngularToastifyModule, ToastService } from 'angular-toastify';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,11 @@ import { MatRippleModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatChipsModule,
     MatIconModule,
-    MatRippleModule
+    MatRippleModule,
+    AngularToastifyModule
+  ],
+  providers: [
+    ToastService
   ]
 })
 export class ListPageModule { }

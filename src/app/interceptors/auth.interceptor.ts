@@ -8,6 +8,7 @@ import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 import { IAuthData } from '../interface/auth-data-interface';
+import { ToastService } from 'angular-toastify';
 
 
 @Injectable()
@@ -17,7 +18,8 @@ export class AuthInterceptor implements HttpInterceptor {
     private authService: AuthService,
     private router: Router,
     private apiService: ApiService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private toastService: ToastService
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -28,11 +30,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       tap((event: any) => {
-        if (event instanceof HttpResponse && this.router.url === '/auth') {
+        if (event instanceof HttpResponse && this.router.url === '/auth' && this.storageService.getAuthData().token) {
           this.router.navigate(['pokemons']).then();
         }
       }),
       catchError((error) => {
+        if (error.status === 400) {
+          this.toastService.error(String(error.error.message));
+        }
         if (error.status === 401) {
           return this.handleAuthError(authReq, next);
         }
@@ -49,7 +54,6 @@ export class AuthInterceptor implements HttpInterceptor {
     return this.apiService.authWithRefToken(token).pipe(
       switchMap((tokens: { jwt: string; rt: string }) => {
         this.storageService.setAuthData(tokens.jwt, tokens.rt);
-
         const cloned = req.clone({
           headers: req.headers.set('Authorization', 'Bearer ' + tokens.jwt)
         });

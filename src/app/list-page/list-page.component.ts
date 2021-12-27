@@ -4,7 +4,6 @@ import { PageEvent } from '@angular/material/paginator';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
 
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -12,6 +11,7 @@ import { PokemonService } from '../services/pokemon.service';
 import { pokemonTypes } from '../consts';
 import { IPokemonList } from '../interface/pokemon-list-interface';
 import { StorageService } from '../services/storage.service';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-list-page',
@@ -24,7 +24,8 @@ export class ListPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private pokemonService: PokemonService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private toastService: ToastService
   ) {
     this.filteredTypes = this.typeCtrl.valueChanges.pipe(
       startWith(null),
@@ -128,15 +129,17 @@ export class ListPageComponent implements OnInit {
     this.pokemons = pokemons;
   }
 
-  addType(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-
-    if (value) {
-      this.types.push(value);
+  addType(type: string): void {
+    if (type && !this.types.includes(type) && this.allTypes.includes(type)) {
+      this.types.push(type);
+    } else if (!this.allTypes.includes(type)) {
+      this.toastService.error('there is no such type, try another one');
+    } else if (this.types.includes(type)) {
+      this.toastService.error('you already pick this type');
     }
-    event.chipInput!.clear();
 
     this.typeCtrl.setValue(null);
+    this.submit();
   }
 
   removeType(type: string): void {
@@ -149,11 +152,8 @@ export class ListPageComponent implements OnInit {
   }
 
   selectedType(event: MatAutocompleteSelectedEvent): void {
-    this.types.push(event.option.viewValue);
+    this.addType(event.option.viewValue);
     this.typesInput.nativeElement.value = '';
-    this.typeCtrl.setValue(null);
-
-    this.submit();
   }
 
   private _filter(value: string): string[] {

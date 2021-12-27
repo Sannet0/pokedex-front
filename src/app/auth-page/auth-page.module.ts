@@ -5,6 +5,7 @@ import { AuthPageComponent } from './auth-page.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
+import { AngularToastifyModule } from 'angular-toastify';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MatRippleModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatInputModule,
     MatIconModule,
-    MatRippleModule
+    MatRippleModule,
+    AngularToastifyModule
   ],
   exports: [
     AuthPageComponent

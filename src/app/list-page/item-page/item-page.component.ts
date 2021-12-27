@@ -14,6 +14,7 @@ export class ItemPageComponent {
 
   @Input() pokemonName: string;
   @Output() degreesPokemonCountEvent = new EventEmitter<void>();
+  @Output() choseTypeEvent = new EventEmitter<string>();
 
   pokemon: IPokemon;
   isDataLoaded = false;
@@ -25,5 +26,9 @@ export class ItemPageComponent {
       this.pokemon = pokemon;
       this.isDataLoaded = true;
     });
+  }
+
+  choseType(type: string) {
+    this.choseTypeEvent.emit(type);
   }
 }

@@ -20,6 +20,7 @@ export class LoadedItemPageComponent {
 
   @Input() pokemon: IPokemon;
   @Output() degreesPokemonCountEvent = new EventEmitter<void>();
+  @Output() choseTypeEvent = new EventEmitter<string>();
 
   isUserInFavorites = this.router.url === '/favorites';
   isHide = false;
@@ -36,5 +37,9 @@ export class LoadedItemPageComponent {
     } else {
       this.pokemonService.deletePokemonFromFavorite(this.pokemon.name).subscribe();
     }
+  }
+
+  chooseType(type: string) {
+    this.choseTypeEvent.emit(type);
   }
 }
