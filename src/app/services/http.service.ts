@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
-  baseURL = 'http://localhost:4000/';
+  baseURL = 'https://pokedex-back-dev.eu-west-2.elasticbeanstalk.com/';
 
   constructor(private httpClient: HttpClient) { }
 
