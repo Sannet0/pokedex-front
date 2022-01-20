@@ -4,7 +4,7 @@
   <div class="item" *ngFor="let fileName of fileList">
     <div>{{fileName}}</div>
     <input type="button" value="Delete" (click)="deleteFile(fileName)">
-    <a href="http://localhost:3000/bucket/file/{{fileName}}">download</a>
+    <a href="{{baseURL + fileName}}">download</a>
   </div>
   <div class="item">
     <input type="file" name="filename" (change)="uploadFileData($event.target)">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilesService } from '../services/files.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-file-manage-page',
@@ -13,6 +14,7 @@ export class FileManagePageComponent implements OnInit {
   formData: FormData = new FormData();
   fileList: string[] = [];
   isBucketCreated: boolean;
+  baseURL = environment.apiUrl + 'bucket/file/';
 
   constructor(private readonly filesService: FilesService) { }
 
