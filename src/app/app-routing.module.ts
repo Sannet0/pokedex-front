@@ -6,6 +6,7 @@ import { SceletonItemPageComponent } from './list-page/item-page/sceleton-item-p
 import { LoadedItemPageComponent } from './list-page/item-page/loaded-item-page/loaded-item-page.component';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { NotfoundPageComponent } from './notfound-page/notfound-page.component';
+import { FileManagePageComponent } from './file-manage-page/file-manage-page.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'auth',
     component: AuthPageComponent
+  },
+  {
+    path: 'files',
+    component: FileManagePageComponent
   },
   {
     path: '**',

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { HttpService } from './http.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private httpClient: HttpClient) { }
 
   getPokemonList(offset: number, limit: number): Observable<any> {
     return this.httpService.get('pokemons?offset=' + offset + '&limit=' + limit);
@@ -58,5 +59,33 @@ export class ApiService {
 
   authWithRefToken(token: string): Observable<{ jwt: string; rt: string }> {
     return this.httpService.patch('token', { token });
+  }
+
+  isAutoCreatedBucketExist() {
+    return this.httpService.get('bucket');
+  }
+
+  createBucket() {
+    return this.httpService.post('bucket');
+  }
+
+  deleteBucket() {
+    return this.httpService.delete('bucket');
+  }
+
+  uploadFile(name: string, file: FormData) {
+    return this.httpService.post(`bucket/file/${ name }`, file);
+  }
+
+  deleteFile(name: string) {
+    return this.httpService.delete(`bucket/file/${ name }`);
+  }
+
+  downloadFile(name: string) {
+    return this.httpService.get(`bucket/file/${ name }`);
+  }
+
+  fileList() {
+    return this.httpService.get('bucket/filelist');
   }
 }
