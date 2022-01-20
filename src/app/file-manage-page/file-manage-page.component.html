@@ -1,0 +1,14 @@
+<input type="button" value="Create bucket" *ngIf="!isBucketCreated" (click)="createBucket()">
+<div class="list" *ngIf="isBucketCreated">
+  <div> Bucket created <input type="button" value="delete bucket" (click)="deleteBucket()"> </div>
+  <div class="item" *ngFor="let fileName of fileList">
+    <div>{{fileName}}</div>
+    <input type="button" value="Delete" (click)="deleteFile(fileName)">
+    <a href="http://localhost:3000/bucket/file/{{fileName}}">download</a>
+  </div>
+  <div class="item">
+    <input type="file" name="filename" (change)="uploadFileData($event.target)">
+    <input placeholder="File name" [(ngModel)]="currentFileName">
+    <input type="button" value="upload" (click)="uploadFile()">
+  </div>
+</div>
